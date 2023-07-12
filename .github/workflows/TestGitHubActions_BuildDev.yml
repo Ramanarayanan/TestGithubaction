@@ -29,9 +29,9 @@ jobs:
     steps:
     - name: BuildStep_CommandLine
       run: |
-        cd Test
+        
         echo "in test"
 
     - name: BuildStep_MetaRunner
       run: |
-        Consloe-Write "test meta runner"
+        echo "test meta runner"
