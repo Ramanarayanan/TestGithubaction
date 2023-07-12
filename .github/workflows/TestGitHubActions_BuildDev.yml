@@ -5,11 +5,7 @@ on:
     branches: [refs/heads/main]
   pull_request:
     branches: [refs/heads/main]
-  workflow_dispatch:
-  workflow_run:
-    workflows: [TestGitHubActions_Build]
-    types:
-      - completed
+  
 
 jobs:
   build:
