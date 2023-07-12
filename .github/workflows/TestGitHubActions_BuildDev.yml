@@ -1,0 +1,37 @@
+name: Build_Dev
+
+on:
+  push:
+    branches: [refs/heads/main]
+  pull_request:
+    branches: [refs/heads/main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: [TestGitHubActions_Build.yml]
+    types:
+      - completed
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+   
+    runs-on: ubuntu-latest
+
+    env:
+      Test_Config_Param: test_config
+      test_env: test_env
+      system.test_system: test_system
+
+    steps:
+    - name: BuildStep_CommandLine
+      run: |
+        cd Test
+        echo "in test"
+
+    - name: BuildStep_MetaRunner
+      run: |
+        Consloe-Write "test meta runner"
