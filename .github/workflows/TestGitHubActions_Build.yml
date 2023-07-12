@@ -6,7 +6,10 @@ on:
   pull_request:
     branches: [refs/heads/main]
   workflow_dispatch:
-  
+  workflow_run:
+    workflows: [Build_Dev]
+    types:
+      - requested
 
 jobs:
    dep1: 
