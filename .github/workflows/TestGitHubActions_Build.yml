@@ -24,4 +24,4 @@ jobs:
 
     steps:
     - name: BuildStep_NUnitTests
-      run: echo :running unit test"
+      run: echo "running unit test"
