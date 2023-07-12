@@ -30,6 +30,7 @@ jobs:
     - name: Dispatch Repository Event
       uses: peter-evans/repository-dispatch@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           event-type: trigger-parent-workflow
     - name: BuildStep_CommandLine
