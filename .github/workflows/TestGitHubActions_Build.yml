@@ -1,4 +1,4 @@
-name: TestGitHubActions_Build
+name: Build_NUnitTests
 
 on:
   push:
@@ -9,10 +9,10 @@ on:
   workflow_run:
     workflows: [Build_Dev]
     types:
-      - requested
+     - requested
 
 jobs:
-   dep1: 
+  build:
 
     strategy:
       matrix:
@@ -20,9 +20,8 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    
+
 
     steps:
     - name: BuildStep_NUnitTests
-      run: echo "running nUnit test workflow 1"
-
+      run: echo :running unit test"
