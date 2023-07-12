@@ -5,9 +5,11 @@ on:
     branches: [refs/heads/main]
   pull_request:
     branches: [refs/heads/main]
-  repository_dispatch:
-    types: trigger-parent-workflow
   workflow_dispatch:
+  workflow_run:
+    workflows: [TestGitHubActions_BuildDev]
+    types:
+      - completed
 
 jobs:
    dep1: 
