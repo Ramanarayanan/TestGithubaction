@@ -1,4 +1,4 @@
-name: Build_NUnitTests
+name: TestGitHubActions_Build
 
 on:
   push:
