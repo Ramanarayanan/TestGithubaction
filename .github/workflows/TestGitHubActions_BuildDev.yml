@@ -27,6 +27,11 @@ jobs:
       system.test_system: test_system
 
     steps:
+    - name: Dispatch Repository Event
+      uses: peter-evans/repository-dispatch@v1
+        with:
+          repository: ${{ github.repository }}
+          event-type: trigger-parent-workflow
     - name: BuildStep_CommandLine
       run: |
         
