@@ -1,0 +1,24 @@
+name: Build_NUnitTests
+
+on:
+  push:
+    branches: [refs/heads/main]
+  pull_request:
+    branches: [refs/heads/main]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: ubuntu-latest
+
+    
+
+    steps:
+    - name: BuildStep_NUnitTests
+      run: |
+
