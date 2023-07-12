@@ -9,7 +9,7 @@ on:
   workflow_run:
     workflows: [Build_Dev]
     types:
-      - completed
+      - requested
 
 jobs:
    dep1: 
