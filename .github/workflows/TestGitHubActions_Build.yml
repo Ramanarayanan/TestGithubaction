@@ -12,15 +12,10 @@ on:
 
 jobs:
   build:
-
     strategy:
       matrix:
         configuration: [Debug, Release]
-
     runs-on: ubuntu-latest
-
-
-
     steps:
     - name: BuildStep_NUnitTests
       run: echo "running unit test"
