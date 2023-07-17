@@ -1,4 +1,4 @@
-name: Build_NUnitTests1
+name: Build_NUnitTests
 on:
   push:
     branches:
@@ -10,11 +10,9 @@ on:
       - requested
 jobs:
   build:
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-    runs-on: ubuntu-latest
+    runs-on: ''
     steps:
-     - name: BuildStep_NUnitTests
-       run: echo "test"
+    - name: BuildStep_NUnitTests
+      run: PS1
+env: {}
 
