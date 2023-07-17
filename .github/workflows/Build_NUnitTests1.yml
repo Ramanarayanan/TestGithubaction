@@ -10,8 +10,8 @@ on:
       - requested
 jobs:
   build:
-   runs-on: ubuntu-latest
-   steps:
-    - name: BuildStep_NUnitTests
-      run: echo "test"
+    runs-on: ubuntu-latest
+    steps:
+     - name: BuildStep_NUnitTests
+       run: echo "test"
 env: {}
