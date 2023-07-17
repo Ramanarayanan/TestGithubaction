@@ -9,8 +9,9 @@ on:
     types:
       - requested
 jobs:
-  runs-on: ''
-  steps:
+  build:
+   runs-on: ubuntu-latest
+   steps:
     - name: BuildStep_NUnitTests
       run: PS1
 env: {}
