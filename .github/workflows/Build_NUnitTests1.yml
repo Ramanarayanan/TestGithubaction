@@ -17,4 +17,3 @@ jobs:
     steps:
      - name: BuildStep_NUnitTests
        run: echo "test"
-env: {}
