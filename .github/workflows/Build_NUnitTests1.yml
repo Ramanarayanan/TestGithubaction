@@ -1,15 +1,19 @@
-name: Build_NUnitTests1
+name: Build_NUnitTests
 on:
   push:
     branches:
       - refs/heads/main
   workflow_dispatch: {}
+  workflow_run:
+    workflows:
+      - Build_Dev
+    types:
+      - requested
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: BuildStep_NUnitTests
         run: |-
-          pwsh -Command ./test.ps1
-
+          pwsh -Command ./Test.ps1
 
