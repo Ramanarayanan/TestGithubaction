@@ -4,7 +4,8 @@ on:
     branches:
       - refs/heads/main
 jobs:
+ build:
   runs-on: ubuntu-latest
   steps:
     - name: BuildStep_NUnitTests
-      uses: Test.ps1
+      run: echo "test"
