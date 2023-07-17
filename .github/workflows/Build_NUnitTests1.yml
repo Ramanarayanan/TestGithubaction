@@ -1,22 +1,10 @@
-name: Build_NUnitTests1
-
+name: Build_NUnitTests
 on:
   push:
     branches:
       - refs/heads/main
-  workflow_run:
-    workflows:
-      - Build_Dev
-    types:
-      - requested
-
 jobs:
-  build:
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-    runs-on: ubuntu-latest
-    steps:
+  runs-on: ubuntu-latest
+  steps:
     - name: BuildStep_NUnitTests
-      run: echo "running unit test"
-
+      uses: Test.ps1
