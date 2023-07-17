@@ -5,8 +5,9 @@ on:
       - refs/heads/main
   workflow_dispatch:
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - name: BuildStep_NUnitTests
-      uses: Test.ps1
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: BuildStep_NUnitTests
+        run: echo "test"
 
