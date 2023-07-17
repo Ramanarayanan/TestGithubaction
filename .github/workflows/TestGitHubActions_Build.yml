@@ -7,7 +7,7 @@ on:
     branches: [refs/heads/main]
   workflow_dispatch:
   workflow_run:
-    workflows: '[Build_Dev]'
+    workflows: Build_Dev
     types:
      - requested
 
