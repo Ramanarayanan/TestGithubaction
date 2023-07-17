@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: BuildStep_NUnitTests
         run: |-
-          pwsh -Command .\test.ps1
+          pwsh -Command ./test.ps1
 
 
