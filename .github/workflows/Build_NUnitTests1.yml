@@ -4,8 +4,8 @@ on:
     branches:
       - refs/heads/main
 jobs:
- build:
-  runs-on: ubuntu-latest
-  steps:
-    - name: BuildStep_NUnitTests
-      run: echo "test"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: BuildStep_NUnitTests
+       run: echo "test"
