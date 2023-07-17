@@ -13,5 +13,5 @@ jobs:
    runs-on: ubuntu-latest
    steps:
     - name: BuildStep_NUnitTests
-      run: PS1
+      run: echo "test"
 env: {}
