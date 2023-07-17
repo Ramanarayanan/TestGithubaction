@@ -1,4 +1,4 @@
-name: Build_NUnitTests1
+name: Build_NUnitTests2
 on:
   push:
     branches:
