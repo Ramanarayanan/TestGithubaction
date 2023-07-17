@@ -2,15 +2,13 @@ name: Build_NUnitTests
 
 on:
   push:
-    branches: [refs/heads/main]
-  pull_request:
-    branches: [refs/heads/main]
-  workflow_dispatch:
+    branches:
+      - refs/heads/main
   workflow_run:
     workflows:
       - Build_Dev
     types:
-     - requested
+      - requested
 
 jobs:
   build:
