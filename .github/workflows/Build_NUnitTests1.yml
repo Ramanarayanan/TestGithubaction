@@ -1,4 +1,5 @@
 name: Build_NUnitTests1
+
 on:
   push:
     branches:
@@ -8,11 +9,14 @@ on:
       - Build_Dev
     types:
       - requested
+
 jobs:
   build:
-    runs-on: ''
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: ubuntu-latest
     steps:
     - name: BuildStep_NUnitTests
-      run: PS1
-env: {}
+      run: echo "running unit test"
 
