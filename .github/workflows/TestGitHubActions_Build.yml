@@ -8,7 +8,7 @@ on:
     workflows:
       - Build_Dev
     types:
-      - requested
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
