@@ -37,7 +37,11 @@ jobs:
         
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Continue Current Workflow on success
+      if: steps.check_trigger_status.outputs.status == 'completed' && steps.check_trigger_status.outputs.conclusion == 'success'
+      run: |
       
+       echo "Triggered Workflow was successful! Continue with this workflow."
       
     
       
