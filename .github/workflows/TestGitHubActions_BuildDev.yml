@@ -48,7 +48,7 @@ jobs:
     - name: BuildStep_CommandLine
       run: |
         
-        echo steps.check_trigger_status.outputs.status
+        echo ${{steps.check_trigger_status.outputs.status}}
 
     - name: BuildStep_MetaRunner
       run: |
