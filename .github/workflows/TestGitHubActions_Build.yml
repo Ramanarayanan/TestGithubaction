@@ -4,11 +4,7 @@ on:
     branches:
       - refs/heads/main
   workflow_dispatch: {}
-  workflow_run:
-    workflows:
-      - Build_Dev
-    types:
-      - completed
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
