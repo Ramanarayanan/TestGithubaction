@@ -28,6 +28,11 @@ jobs:
       system.test_system: test_system
 
     steps:
+    - name: Check if Triggered Workflow was successful
+      id: check_trigger_status
+      uses: octokit/request-action@v2.x
+      
+      
     
       
   
