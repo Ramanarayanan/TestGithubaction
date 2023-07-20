@@ -48,7 +48,7 @@ jobs:
     - name: BuildStep_CommandLine
       run: |
         
-        echo "in test"
+        echo steps.check_trigger_status.outputs.status
 
     - name: BuildStep_MetaRunner
       run: |
