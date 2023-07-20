@@ -28,17 +28,7 @@ jobs:
       system.test_system: test_system
 
     steps:
-    - name: Check if Triggered Workflow was successful
-      id: check_trigger_status
-      uses: octokit/request-action@v2.x
-      with:
-        route: GET /repos/:repository/actions/runs/${{ github.event.workflow.id }}
-        repository: ${{ github.event.repository.full_name }
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Continue Current Workflow on success
-      if: steps.check_trigger_status.outputs.status == 'completed' && steps.check_trigger_status.outputs.conclusion == 'success' 
-         echo "Triggered Workflow was successful! Continue with this workflow."
+    
       
   
     - name: BuildStep_CommandLine
