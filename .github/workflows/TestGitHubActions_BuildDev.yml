@@ -33,7 +33,7 @@ jobs:
       uses: octokit/request-action@v2.x
       with:
         route: GET /repos/Ramanarayanan/TestGitHubAction/actions/runs/${{ github.event.workflow.id }}
-        repository: ${{ github.event.repository.full_name }}
+        
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
