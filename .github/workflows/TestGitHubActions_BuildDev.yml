@@ -31,6 +31,11 @@ jobs:
     - name: Check if Triggered Workflow was successful
       id: check_trigger_status
       uses: octokit/request-action@v2.x
+      with:
+        route: GET /repos/TestGitHubAction/actions/runs/${{ github.event.workflow.id }}
+        repository: ${{ github.event.repository.full_name }}
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       
     
