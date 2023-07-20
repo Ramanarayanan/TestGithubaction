@@ -32,7 +32,7 @@ jobs:
       id: check_trigger_status
       uses: octokit/request-action@v2.x
       with:
-        route: GET /repos/Ramanarayanan/TestGithubaction/actions/runs/${{ github.event.workflow.id }}
+        route: GET /repos/Ramanarayanan/TestGithubaction/actions/runs/5578521544
                
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
