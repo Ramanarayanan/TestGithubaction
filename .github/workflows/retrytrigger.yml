@@ -45,6 +45,7 @@ jobs:
     steps:
        - name: BuildStep_MetaRunner
          run: |
+             echo ${{ toJson(needs.retry_job) }}
              echo "test meta runner"
        
        
