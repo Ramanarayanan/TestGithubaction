@@ -1,0 +1,50 @@
+name: Retry and Continue Triggered Workflow
+
+on:
+  workflow_run:
+    workflows:
+      - "triggering_workflow.yml"
+    types:
+      - completed
+
+jobs:
+  retry_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if triggering workflow failed
+        id: check_triggering_workflow
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const workflowRun = context.payload.workflow_run;
+            const status = workflowRun.conclusion;
+            console.log(`Triggering workflow status: ${status}`);
+            if (status === "failure") {
+              core.setOutput('retry', 'true');
+            }
+
+      - name: Retry triggered workflow if needed
+        if: steps.check_triggering_workflow.outputs.retry == 'true'
+        run: |
+          for retry_attempt in 1 2 3; do
+            echo "Attempting retry $retry_attempt of the triggered workflow..."
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/workflows/triggering_workflow.yml/dispatches" \
+              -d '{"ref":"main"}'
+            sleep 30
+          done
+
+  continue_job:
+    needs: retry_job
+    runs-on: ubuntu-latest
+    if: ${{ needs.retry_job.result != 'failure' }}
+    steps:
+       - name: BuildStep_MetaRunner
+         run: |
+          becho "test meta runner"
+       
+       
+
