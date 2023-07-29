@@ -19,6 +19,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const workflowRun = context.payload.workflow_run;
+            console.log(JSON.stringify(context.payload));
             const status = workflowRun.conclusion;
             console.log(`Triggering workflow status: ${status}`);
             if (status === "failure") {
