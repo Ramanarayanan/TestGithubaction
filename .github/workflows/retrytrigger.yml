@@ -1,6 +1,7 @@
 name: Retry and Continue Triggered Workflow
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows:
       - "triggering_workflow.yml"
