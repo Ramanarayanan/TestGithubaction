@@ -1,0 +1,43 @@
+name: Retry Reusable Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  retry_workflow_job:
+    uses: ./.github/workflows/Parentworkflow.yml
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call Reusable Workflow
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/:repository/dispatches
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event_type: retry_reusable_workflow
+
+  watch_retry_job:
+    runs-on: ubuntu-latest
+    needs: retry_workflow_job
+    if: ${{ failure() }}
+    
+    steps:
+      - name: Wait for a minute
+        run: sleep 60
+
+      - name: Check the number of retries
+        id: retries
+        run: echo "RETRIES=$((${{ job.status }} == 'success' ? 0 : ${{ github.event.inputs.retries }} + 1))" >> $GITHUB_ENV
+
+      - name: Retry the workflow if needed
+        if: ${{ fromJson(steps.retries.outputs.RETRIES) < 3 }}
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/:repository/dispatches
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event_type: retry_reusable_workflow
+          inputs: '{"retries": ${{ steps.retries.outputs.RETRIES }}}'
