@@ -1,4 +1,4 @@
-name: Trigger and Verify Workflow
+name: TriggerWorkflow
 
 on:
   push:
