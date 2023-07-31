@@ -1,0 +1,36 @@
+name: TestDispatchWorkflow
+
+on:
+  workflow_dispatch:
+   
+
+jobs:
+  retry_job:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Retry triggered workflow if needed
+        id: retry
+     
+        run: |
+          for retry_attempt in 1 2 3; do
+            echo "Attempting retry $retry_attempt of the triggered workflow..."
+            workflow_run_id=$(curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Parentworkflow.yml/dispatches" \
+              -d '{"ref":"main"}' | jq -r '.id')
+             echo 'the workflow id is"
+             echo $workflow_run_id
+            if [ "$workflow_run_id" != "null" ]; then
+              workflow_status=$(curl -s \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/${{ github.repository }}/actions/runs/$workflow_run_id" | jq -r '.conclusion')
+              if [ "$workflow_status" == "success" ]; then
+                echo "Triggered workflow succeeded."
+                break
+              fi
+            fi
+            sleep 30
+          done
