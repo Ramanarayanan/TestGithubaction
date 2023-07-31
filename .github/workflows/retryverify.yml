@@ -30,7 +30,7 @@ jobs:
         run: |
           response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Parentworkflow.yml/runs")
-                   echo ${{ fromjson(response}}
+                   echo ${{ fromjson($response}}
           echo "$response" > workflow_runs.json
       - name: Get the latest workflow run
         id: latest_workflow_run
