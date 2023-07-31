@@ -36,7 +36,7 @@ jobs:
         id: latest_workflow_run
         run: |
           latest_run=$(cat workflow_runs.json | jq 'max_by(.updated_at)')
-          echo ${{ fromjson(latest_run}}
+          echo $latest_run
           echo "$latest_run" > latest_workflow_run.json
 
       - name: Show the latest workflow run
