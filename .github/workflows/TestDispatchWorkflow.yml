@@ -13,8 +13,7 @@ jobs:
         id: retry
      
         run: |
-          for retry_attempt in 1 2 3; do
-            echo "Attempting retry $retry_attempt of the triggered workflow..."
+         
             workflow_run_id=$(curl -X POST \
               -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
@@ -22,15 +21,5 @@ jobs:
               -d '{"ref":"main"}' )
              echo "the workflow id is"
              echo $workflow_run_id
-            if [ "$workflow_run_id" != "null" ]; then
-              workflow_status=$(curl -s \
-                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                -H "Accept: application/vnd.github.v3+json" \
-                "https://api.github.com/repos/${{ github.repository }}/actions/runs/$workflow_run_id" | jq -r '.conclusion')
-              if [ "$workflow_status" == "success" ]; then
-                echo "Triggered workflow succeeded."
-                break
-              fi
-            fi
-            sleep 30
-          done
+           
+        
