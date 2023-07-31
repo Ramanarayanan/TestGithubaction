@@ -34,7 +34,7 @@ jobs:
                     workflow_runs=$(echo "$response" | jq -r '.workflow_runs')
                     echo "This is workflow run"
                     echo $workflow_runs
-          echo $response > workflow_runs.json
+          echo $workflow_runs > workflow_runs.json
       - name: Get the latest workflow run
         id: latest_workflow_run
         run: |
