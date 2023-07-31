@@ -3,7 +3,7 @@ name: Retry Triggered Workflow
 on:
   workflow_run:
     workflows:
-      - "Parentworkflow.yml"
+      - Parentworkflow
     types:
       - completed
 
